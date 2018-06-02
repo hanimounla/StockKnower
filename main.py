@@ -17,10 +17,10 @@ if data_source == 'alphavantage':
 
     api_key = '3GL2O8TQS330GIZR'
 
-    # American Airlines stock market prices
+    # Apple stock market prices
     ticker = "AAPL"
 
-    # JSON file with all the stock market data for AAL from the last 20 years
+    # JSON file with all the stock market data for AAPL from the last 20 years
     url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
 
     # Save data to this file
