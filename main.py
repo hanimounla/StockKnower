@@ -15,16 +15,17 @@ data_source = 'alphavantage' # alphavantage or kaggle
 if data_source == 'alphavantage':
     # ====================== Loading Data from Alpha Vantage ==================================
 
+    #my api_key
     api_key = '3GL2O8TQS330GIZR'
 
-    # Apple stock market prices
-    ticker = "AAPL"
+    # SAP stock market prices
+    ticker = "SAP"
 
-    # JSON file with all the stock market data for AAPL from the last 20 years
+    # JSON file with all the stock market data for SAP from the last 20 years
     url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
 
     # Save data to this file
-    file_to_save = 'stock_market_data-%s.csv'%ticker
+    file_to_save = 'Data\\stock_market_data-%s.csv'%ticker
 
     # If you haven't already saved data,
     # Go ahead and grab the data from the url
@@ -62,4 +63,4 @@ else:
 df = df.sort_values('Date')
 
 # Double check the result
-df.head()
+print(df.head())
