@@ -20,7 +20,6 @@ url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbo
 
 date = dt.datetime.now().strftime("%Y.%m.%d")
 full_name = ticker + "-" + date
-print(full_name)
 # Save data to this file
 file_to_save = 'Data\\%s.csv'%full_name
 
@@ -46,3 +45,13 @@ if not os.path.exists(file_to_save):
 else:
     print('File already exists. Loading data from CSV')
     df = pd.read_csv(file_to_save)
+
+
+df = df.sort_values('Date')
+#plt.figure(figsize = (18,9))
+plt.plot(range(df.shape[0]),(df['Low']+df['High'])/2.0)
+plt.xticks(range(0,df.shape[0],500),df['Date'].loc[::500],rotation=45)
+plt.xlabel('Date',fontsize=18)
+plt.ylabel('Mid Price',fontsize=18)
+plt.title('Stock M ' +  ticker)
+plt.show()
