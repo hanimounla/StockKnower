@@ -1,5 +1,3 @@
-# Make sure that you have all these libaries available to run the code successfully
-from pandas_datareader import data
 import matplotlib.pyplot as plt
 import pandas as pd
 import datetime as dt
@@ -14,13 +12,13 @@ from sklearn.preprocessing import MinMaxScaler
 api_key = '3GL2O8TQS330GIZR'
 
 # SAP stock market prices
-ticker = "AAPL"
+ticker = "SAP"
 
 # JSON file with all the stock market data for SAP from the last 20 years
 url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
 
 
-date = dt.datetime.now().strftime("%y.%m.%d")
+date = dt.datetime.now().strftime("%Y.%m.%d")
 full_name = ticker + "-" + date
 print(full_name)
 # Save data to this file
