@@ -4,8 +4,6 @@ import datetime as dt
 import urllib.request, json
 import os
 import numpy as np
-import tensorflow as tf # This code has been tested with TensorFlow 1.6
-from sklearn.preprocessing import MinMaxScaler
 
 
 #my api_key, You can get yours from alphavantage
