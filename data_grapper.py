@@ -25,7 +25,7 @@ def grap_stock_data(ticker):
                             float(v['4. close']),float(v['1. open'])]
                 df.loc[-1,:] = data_row
                 df.index += 1
-    #    df = df.sort_values('Date')    
+        df = df.sort_values('Date')    
         df.to_csv(file_to_save)
         print('Data saved to : %s'%file_to_save)    
 
@@ -33,3 +33,6 @@ def grap_stock_data(ticker):
     else:
         print('File already exists. Loading data from CSV')
         df = pd.read_csv(file_to_save)
+
+
+    
