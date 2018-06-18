@@ -5,19 +5,13 @@ import os
 
 #my api_key, You can get yours from alphavantage
 api_key = '3GL2O8TQS330GIZR'
-
-# stock ticker
-ticker = "SAP"
-
 # JSON file with all the stock market data for ticker from the last 20 years
 url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
-
-
+#nice date format
 today_date = dt.datetime.now().strftime("%Y.%m.%d")
 
 # Save data to this file
 file_to_save = 'Data\\%s.csv'%ticker
-
 
 
 if not os.path.exists(file_to_save):
