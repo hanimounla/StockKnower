@@ -8,4 +8,8 @@ import sentiment_analyzer as s_analyzer
 
 ticker = 'SAP'
 
-processor.process(grapper.grap_stock_data(ticker),ticker)
+data = grapper.grap_stock_data(ticker)
+data_processed = processor.process(data,ticker)
+
+vizer.basic_plot(data, '%s original'%ticker)
+vizer.basic_plot(data_processed, '%s processed'%ticker)
