@@ -2,23 +2,45 @@
 #Price_predection.py and Sentiment.py
 import data_grabber as grabber
 import data_processor as processor
-import price_predictor as predictor
 import visualizer as vizer
-import sentiment_analyzer as s_analyzer
+import models
 
 
 ticker = 'SAP'
 
 data = grabber.grab_stock_data(ticker)
-data_processed = processor.process(data,ticker)
+data_processed = processor.get_MinMax(data,ticker) #make the data range from 0 to 1 
 
 
-#we've noticed that the graph is the same 
-vizer.basic_plot(data, '%s original'%ticker)
+#we will noticed that the graphs are the same 
+#vizer.basic_plot(data, '%s original'%ticker)
 vizer.basic_plot(data_processed, '%s processed'%ticker)
 
-#get the train and test data
-train_data, test_data = processor.split(data, split_size= 0.9)
 
+#Creating the machine learning model
+x_train, x_test, y_train, y_test = processor.split_lstm(data_processed)
+# Set up hyperparameters
+batch_size = 512
+epochs = 20
+
+# build improved lstm model
+model = models.build_LSTM_model(x_train.shape[-1],output_dim = unroll_length, return_sequences=True)
+
+start = time.time()
+#final_model.compile(loss='mean_squared_error', optimizer='adam')
+model.compile(loss='mean_squared_error', optimizer='adam')
+print('compilation time : ', time.time() - start)
+
+#training
+model.fit(x_train, 
+          y_train, 
+          batch_size=batch_size,
+          epochs=epochs,
+          verbose=2,
+          validation_split=0.05
+         )
+
+# Generate predictions 
+predictions = model.predict(x_test, batch_size=batch_size)
 
 
