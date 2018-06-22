@@ -13,7 +13,7 @@ def process(data,ticker):
 #split the data to train and test data
 def split(data, split_size = 0.7):
     data_size = len(data)
-    split = data_size * split_size
+    split = int(data_size * split_size)
     train_data  = data[:split]
     test_data = data[split:]
     return train_data, test_data 

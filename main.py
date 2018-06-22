@@ -7,7 +7,7 @@ import visualizer as vizer
 import sentiment_analyzer as s_analyzer
 
 
-ticker = 'SAP'
+ticker = 'MSFT'
 
 data = grapper.grap_stock_data(ticker)
 data_processed = processor.process(data,ticker)
@@ -17,6 +17,8 @@ data_processed = processor.process(data,ticker)
 vizer.basic_plot(data, '%s original'%ticker)
 vizer.basic_plot(data_processed, '%s processed'%ticker)
 
-#try to predict the behaviour of the stock for the next week
-next_week_data = predictor.predict(data_processed,ticker)
+#get the train and test data
+train_data, test_data = processor.split(data,split_size= 0.9)
+
+
 
