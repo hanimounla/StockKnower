@@ -3,6 +3,7 @@ import pandas as pd
 
 #scale the data to have simpler calculations
 def process(data,ticker):
+    print ("Scaling %s stock data"%ticker)
     scaler = MinMaxScaler()
     numerical = ['Low','High','Close','Open','Med']
     data[numerical] = scaler.fit_transform(data[numerical])

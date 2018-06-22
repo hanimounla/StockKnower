@@ -4,8 +4,7 @@ import urllib.request, json
 import os
 
 
-
-def grap_stock_data(ticker):
+def grab_stock_data(ticker):
     #my api_key, You can get yours from alphavantage
     api_key = '3GL2O8TQS330GIZR'
     # JSON file with all the stock market data for ticker from the last 20 years
@@ -15,6 +14,7 @@ def grap_stock_data(ticker):
     # download data if not existing
     if not os.path.exists(file_to_save):
         with urllib.request.urlopen(url_string) as url:
+            print ("Grabbing %s stock data..."%ticker)
             data = json.loads(url.read().decode())
             # extract stock market data
             data = data['Time Series (Daily)']
