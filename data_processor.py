@@ -1,5 +1,6 @@
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
+import numpy as np
 
 #scale the data to have simpler calculations
 def get_MinMax(data,ticker):
@@ -35,12 +36,11 @@ def split_lstm(data, prediction_time=1, test_data_size=450, unroll_length=50):
     # training data
     test_data_cut = test_data_size + unroll_length + 1
 
-    x_train = data[0:-prediction_time - test_data_cut].as_matrix()
-    y_train = data[prediction_time:-test_data_cut]['Med'].as_matrix()
-
+    x_train = data[0:-prediction_time - test_data_cut].values
+    y_train = data[prediction_time:-test_data_cut]['Med'].values
     # test data
-    x_test = data[0 - test_data_cut:-prediction_time].as_matrix()
-    y_test = data[prediction_time - test_data_cut:]['Med'].as_matrix()
+    x_test = data[0 - test_data_cut:-prediction_time].values
+    y_test = data[prediction_time - test_data_cut:]['Med'].values
 
     return x_train, x_test, y_train, y_test
  

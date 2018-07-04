@@ -3,6 +3,7 @@
 import data_grabber as grabber
 import data_processor as processor
 import visualizer as vizer
+import time
 import models
 
 
@@ -22,6 +23,17 @@ x_train, x_test, y_train, y_test = processor.split_lstm(data_processed)
 # Set up hyperparameters
 batch_size = 512
 epochs = 20
+
+unroll_length = 50
+x_train = processor.unroll(x_train, unroll_length)
+x_test = processor.unroll(x_test, unroll_length)
+y_train = y_train[-x_train.shape[0]:]
+y_test = y_test[-x_test.shape[0]:]
+
+print("x_train", x_train.shape)
+print("y_train", y_train.shape)
+print("x_test", x_test.shape)
+print("y_test", y_test.shape)
 
 # build improved lstm model
 model = models.build_LSTM_model(x_train.shape[-1],output_dim = unroll_length, return_sequences=True)
