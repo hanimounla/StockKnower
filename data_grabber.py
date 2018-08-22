@@ -25,7 +25,8 @@ def grab_stock_data(ticker):
                             float(v['4. close']),float(v['1. open'])]
                 df.loc[-1,:] = data_row
                 df.index += 1
-        df['Med'] = (df['High'] + df['Low']) / 2
+        df['Med'] = ((df['High'] + df['Low']) / 2)
+        df['Med'] = ["%.2f"%med for med in df['Med']]
         df = df.drop(['Low', 'High', 'Close'],axis = 1)
         df = df.sort_values('Date')
         df.to_csv(file_to_save)

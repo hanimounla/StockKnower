@@ -6,7 +6,7 @@ import numpy as np
 def get_MinMax(data,ticker):
     print ("Scaling %s stock data"%ticker)
     scaler = MinMaxScaler()
-    numerical = ['Low','High','Close','Open','Med']
+    numerical = ['Med']
     data[numerical] = scaler.fit_transform(data[numerical])
     data.to_csv('Data\\%s-processed.csv'%ticker)
     print('Data processed and saved :)')
